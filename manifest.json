@@ -6,6 +6,6 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "contextMenus"],
   "host_permissions": ["*://*.instagram.com/*"]
 }
