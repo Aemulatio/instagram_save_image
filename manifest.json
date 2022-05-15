@@ -12,5 +12,8 @@
     "matches": ["<all_urls>"],
     "js": ["script.js"],
     "all_frames": true
-  }]
+  }],
+  "externally_connectable": {
+    "matches": ["<all_urls>"]
+  }
 }

@@ -24,22 +24,21 @@ chrome.runtime.onInstalled.addListener(function () {
 // 	// mycallback(itemData, tab)
 // });
 
-chrome.contextMenus.onClicked.addListener(function(info, tab) {
+chrome.contextMenus.onClicked.addListener(function (info, tab) {
 	console.log("context clicked")
 	if (tab) {
 		console.log("in tab clicked")
-		chrome.tabs.sendMessage(tab.id, "clicked send message", function (response) {
-			// ...
-			console.log("send message")
-		});
+		// console.log(chrome.tabs)
+		// chrome.tabs.sendMessage(tab.id, {message: "clicked send message"}, function (response) {
+		// 	// ...
+		// 	console.log(response)
+		// 	console.log(tab)
+		// 	console.log(tab.id)
+		// 	console.log("send message")
+		// 	return true;
+		//
+		// });
+
+		
 	}
 });
-
-
-function mycallback(info, tab) {
-	chrome.tabs.sendMessage(tab.id, "getClickedEl", {frameId: info.frameId}, data => {
-		// elt.value = data.value;
-		console.log("data", data)
-		console.log(info)
-	});
-}
