@@ -13,32 +13,18 @@ chrome.runtime.onInstalled.addListener(function () {
 	setUpContextMenus();
 	console.log("installed")
 });
-
-// chrome.contextMenus.onClicked.addListener(function (itemData, tab) {
-// 	console.log("clicked")
-// 	console.log(itemData)
-// 	console.log(tab)
-// 	console.log(chrome)
-// 	console.log(chrome.contextMenus)
-//
-// 	// mycallback(itemData, tab)
-// });
-
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
 	console.log("context clicked")
-	if (tab) {
-		console.log("in tab clicked")
-		// console.log(chrome.tabs)
-		// chrome.tabs.sendMessage(tab.id, {message: "clicked send message"}, function (response) {
-		// 	// ...
-		// 	console.log(response)
-		// 	console.log(tab)
-		// 	console.log(tab.id)
-		// 	console.log("send message")
-		// 	return true;
-		//
-		// });
 
-		
-	}
+	console.log("func params:")
+	console.log(info)
+	console.log(tab)
+
+	chrome.tabs.query({active: true, currentWindow: true},function(tabs) {
+		chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
+			console.log(response);
+		});
+	});
+
+
 });
