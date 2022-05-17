@@ -1,7 +1,7 @@
 {
   "name": "Скачать фотографии с Instagram",
   "description": "Позволяет скачивать фотографии с instagram.com",
-  "version": "0.01",
+  "version": "1.0",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js"
@@ -10,7 +10,10 @@
   "host_permissions": ["*://*.instagram.com/*"],
   "content_scripts": [{
     "matches": ["<all_urls>"],
-    "js": ["script.js"],
+    "js": ["FileSaver.js","script.js"],
     "all_frames": true
-  }]
+  }],
+  "externally_connectable": {
+    "matches": ["<all_urls>"]
+  }
 }
