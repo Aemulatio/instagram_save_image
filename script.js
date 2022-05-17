@@ -26,24 +26,11 @@ document.addEventListener("contextmenu", function (event) {
     if ("role" in div.attributes) {
         console.log("role")
     } else {
-        console.log(div.previousElementSibling)
-        console.log(div.previousElementSibling.firstElementChild)
-        console.log(div.previousElementSibling.firstElementChild.getAttribute('src'))
-        downloadURI(div.previousElementSibling.firstElementChild.getAttribute('src'), "instagram_image.jpg")
+        const url = div.previousElementSibling.firstElementChild.getAttribute('src'),
+            fileName = url.match(/(\/[\w]*.((jpg)|(png)))/);
+        saveAs(url, fileName[0].replace("/", ""))
     }
 
     // console.log(event)
     // console.log(document.querySelector(event.target).previousSibling)
 });
-
-function downloadURI(uri, name) {
-    var link = document.createElement("a");
-    link.download = name;
-    link.href = uri;
-    link.target = "_blank"
-    // link.setAttribute("")
-    document.body.appendChild(link);
-    link.click();
-    // document.body.removeChild(link);
-    // delete link;
-}
