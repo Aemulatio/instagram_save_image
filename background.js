@@ -11,11 +11,9 @@ function setUpContextMenus() {
 chrome.runtime.onInstalled.addListener(function () {
 	// When the app gets installed, set up the context menus
 	setUpContextMenus();
-	console.log("installed")
 });
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
 	chrome.tabs.sendMessage(tab.id, {menuItemId: "save"}, function (response) {
-		console.log(response);
 		chrome.scripting.executeScript({
 			func: save,
 			args: [response.url, response.fileName],
