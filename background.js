@@ -14,13 +14,6 @@ chrome.runtime.onInstalled.addListener(function () {
 	console.log("installed")
 });
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
-	console.log("context clicked")
-
-	console.log("func params:")
-	console.log(info)
-	console.log(tab)
-	// if (info.menuItemId === "save") {
-	// chrome.tabs.query({active: true, currentWindow: true},function(tabs) {
 	chrome.tabs.sendMessage(tab.id, {menuItemId: "save"}, function (response) {
 		console.log(response);
 		chrome.scripting.executeScript({
@@ -29,9 +22,6 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 			target: {tabId: tab.id}
 		})
 	});
-	// }
-	// });
-
 
 });
 function save(url, fileName){
