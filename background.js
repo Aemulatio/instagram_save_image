@@ -19,12 +19,22 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 	console.log("func params:")
 	console.log(info)
 	console.log(tab)
-
-	chrome.tabs.query({active: true, currentWindow: true},function(tabs) {
-		chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
-			console.log(response);
-		});
+	// if (info.menuItemId === "save") {
+	// chrome.tabs.query({active: true, currentWindow: true},function(tabs) {
+	chrome.tabs.sendMessage(tab.id, {menuItemId: "save"}, function (response) {
+		console.log(response);
+		chrome.scripting.executeScript({
+			func: save,
+			args: [response.url, response.fileName],
+			target: {tabId: tab.id}
+		})
 	});
+	// }
+	// });
 
 
 });
+function save(url, fileName){
+	saveAs(url, fileName);
+
+}
